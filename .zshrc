@@ -5,6 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Initialize autocompletion
 autoload -Uz compinit
 compinit
@@ -19,6 +24,8 @@ setopt CORRECT
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+
+# Set key bindings. Emacs -e, Vim -v
 bindkey -e
 
 # Options for ignore duplicate
@@ -43,6 +50,8 @@ alias ll='ls -Alh --color=auto'
 alias grep='grep --colour=auto'
 alias ip='ip -c'
 alias mpv_hdr='mpv --vo=gpu-next --target-colorspace-hint --gpu-api=vulkan --gpu-context=waylandvk'
+alias v='vim'
+alias vv='nvim'
 
 # Exports
 export PATH="$PATH:/usr/local/go/bin"
@@ -53,17 +62,10 @@ export VISUAL=nvim
 # Ranger
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Add fzf
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --style default'
 
-# Add plagin zsh-autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(completion)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#505050'
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

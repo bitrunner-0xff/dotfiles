@@ -12,6 +12,8 @@ cp -r ~/config/wofi ~/.config/
 cp -r ~/config/ranger ~/.config/
 sudo cp -r ~/config/rose-pine /boot/EFI/refind/
 
+cp ~/config/.vimrc ~/
+
 cp ~/config/.tmux.conf ~/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
