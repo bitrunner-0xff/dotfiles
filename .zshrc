@@ -72,3 +72,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --style default'
 # Add plagin zsh-history-substring-search
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=black,fg=green,bold,underline'
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Add plagin zsh-syntax-highlighting
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
