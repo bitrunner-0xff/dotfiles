@@ -70,7 +70,5 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --style default'
 
 # Add plagin zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=black,fg=green,bold,underline'
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
