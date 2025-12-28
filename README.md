@@ -37,4 +37,3 @@ cp ~/config/.zshrc ~/
 ```sh
 cp -r ~/config/alacritty.toml ~/
 
-```
