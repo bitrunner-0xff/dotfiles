@@ -42,7 +42,7 @@ setopt EXTENDED_HISTORY # save cmd times
 
 # Hyprland run
 if [ "$(tty)" = "/dev/tty1" ]; then
- Hyprland
+ start-hyprland
 fi
 
 # Aliases
