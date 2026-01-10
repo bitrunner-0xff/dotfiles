@@ -1,3 +1,7 @@
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 
@@ -20,11 +24,8 @@ vim.opt.smartindent = true
 vim.opt.swapfile = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-vim.opt.backup = true
-vim.opt.writebackup = true
-vim.opt_global.backupdir = { "/tmp//" }
-vim.opt.backupcopy = "auto"
-vim.opt.backupext = ".vimbak"
+vim.opt.backup = false
+vim.opt.writebackup = false
 
 -- TODO: check if anything is broken
 vim.opt_global.completeopt = { "menu", "menuone", "noselect" }
@@ -35,15 +36,14 @@ vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.showmatch = true
 vim.opt.complete = "kspell" -- TODO: test if it works at all
 -- vim.opt.autocomplete = true
-vim.opt.spelllang = {"en"}
-vim.opt.spellsuggest = {"best", 9}
+vim.opt.spelllang = { "en" }
+vim.opt.spellsuggest = { "best", 9 }
 vim.opt_global.diffopt:append({ "vertical" })
 vim.opt.wildignorecase = true
 vim.opt.confirm = true
 vim.opt.autowriteall = true
 vim.opt.list = true
-vim.opt.listchars =
-    { tab = [[│ ]], trail = "•", extends = "»", precedes = "«" }
+vim.opt.listchars = { tab = [[│ ]], trail = "•", extends = "»", precedes = "«" }
 vim.opt.foldenable = false
 
 -- SEARCH ---------------------------------------------------------------------
@@ -62,6 +62,4 @@ vim.opt.timeoutlen = 500
 vim.opt.colorcolumn = "80"
 vim.opt.background = "dark"
 
-vim.opt.clipboard = 'unnamedplus'   -- use system clipboard
-
-
+vim.opt.clipboard = "unnamedplus" -- use system clipboard
