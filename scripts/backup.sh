@@ -1,37 +1,66 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
 
 SOURCE_FOLDER="$HOME/Main"
 DEST_DIR="/run/media/veracrypt1/backup"
 SNAPSHOT_FILE="$DEST_DIR/backup.snar"
 BACKUP_NAME="Main_$(date +%Y-%m-%d).tar"
 
-
 BACKUP_DIR="/run/media/veracrypt1/backup"
-RESTORE_DIR="."
+RESTORE_DIR="$HOME"
 
-if [ "$1" = "-c" ]; then
-    echo "Backup process started..."
+create() {
+  echo "Backup process started..."
 
-    tar --create \
-        --verbose \
-        --verify \
-        --file="$DEST_DIR/$BACKUP_NAME" \
-        --listed-incremental="$SNAPSHOT_FILE" \
-        -C $DEST_DIR "$SOURCE_FOLDER"
+  [[ ! -d "$DEST_DIR" ]] && {
+    echo "Backup destination not mounted"
+    exit 1
+  }
+  [[ ! -e ~/Main/secrets ]] && mkdir -p ~/Main/secrets
 
-    echo "Backup created: $BACKUP_NAME"
+  cp -av ~/.ssh ~/.password-store ~/.gnupg ~/Main/secrets/
 
-elif [ "$1" = "-r" ]; then
-    for BACKUP in $(ls "$BACKUP_DIR"/Main_*.tar); do
-        echo "Restoring from: $BACKUP"
+  tar --create \
+    --verbose \
+    --file="$DEST_DIR/$BACKUP_NAME" \
+    --listed-incremental="$SNAPSHOT_FILE" \
+    -C "$HOME" Main
 
-        tar --extract \
-            --verbose \
-            --listed-incremental=/dev/null \
-            --directory="$RESTORE_DIR" \
-            --file="$BACKUP"
-    done
+  if ! tar -tf "$DEST_DIR/$BACKUP_NAME" >/dev/null; then
+    echo "Your backup is busted."
+    exit 1
+  fi
 
-    echo "Restore completed in: $RESTORE_DIR"
-fi
+  echo "Backup created: $BACKUP_NAME"
+}
 
+restore() {
+  echo "Restore process started..."
+
+  BACKUPS=("$BACKUP_DIR"/Main_*.tar)
+
+  for BACKUP in "${BACKUPS[@]}"; do
+    echo "Restoring from: $BACKUP"
+
+    tar --extract \
+      --verbose \
+      --listed-incremental=/dev/null \
+      --directory="$RESTORE_DIR" \
+      --file="$BACKUP"
+  done
+
+  cp -a ~/Main/secrets/. ~/ && rm -rf ~/Main/secrets
+
+  echo "Restore completed in: $RESTORE_DIR"
+}
+
+case "$1" in
+-c) create ;;
+-r) restore ;;
+*)
+  echo "Usage: $0 -c | -r"
+  exit 1
+  ;;
+esac
