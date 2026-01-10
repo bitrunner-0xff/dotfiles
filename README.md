@@ -15,25 +15,6 @@
 ## How to install
 
 ```sh
-mkdir ~/.local/bin && cp -r ~/config/scripts/* ~/.local/bin && chmod u+x ~/.local/bin/*
-
-cp -r ~/config/kitty ~/.config/
-cp -r ~/config/hypr ~/.config/
-cp -r ~/config/mako ~/.config/
-cp -r ~/config/nvim ~/.config/
-cp -r ~/config/satty ~/.config/
-cp -r ~/config/waybar ~/.config/
-cp -r ~/config/wofi ~/.config/
-cp -r ~/config/ranger ~/.config/
-sudo cp -r ~/config/rose-pine /boot/EFI/refind/
-
-cp ~/config/.tmux.conf ~/
-cp ~/config/.vimrc ~/
-cp ~/config/.zshrc ~/
+git clone https://github.com/bitrunner-0xff/dotfiles.git
 ```
-
-# Optional
-
-```sh
-cp -r ~/config/alacritty.toml ~/
 
