@@ -53,6 +53,8 @@ alias mpv_hdr='mpv --vo=gpu-next --target-colorspace-hint --gpu-api=vulkan --gpu
 alias v='vim'
 alias vv='nvim'
 
+alias kns='kubectl config set-context --current --namespace'
+
 # Exports
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="/home/glen/.local/bin:$PATH"
